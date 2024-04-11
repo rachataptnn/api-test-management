@@ -1,17 +1,22 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import TestDetailPage from './test-detail/page';
 
-// Define interfaces to represent the structure of the API response
-interface ApiItem {
+interface Pagination {
+  page: number;
+  perPage: number;
+  total: number;
+}
+
+interface EachTest {
   uuid: string;
-  service_name: string;
-  created_date: string;
+  serviceName: string;
+  createdDate: string;
 }
 
 const TestListPage: React.FC = () => {
-  const [data, setData] = useState<ApiItem[]>([]);
+  const [testList, setTestList] = useState<EachTest[]>([]);
+  const [pages, setPages] = useState<Pagination>();
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -26,7 +31,8 @@ const TestListPage: React.FC = () => {
         }
 
         const responseData = await response.json();
-        setData(responseData.result);
+        setTestList(responseData.result);
+        setPages(responseData.pagination);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -43,17 +49,21 @@ const TestListPage: React.FC = () => {
   return (
     <div>
       <h1>Test List Page</h1>
-      {data.map((item) => (
+      {testList?.map((item) => (
         <button
           key={item.uuid}
           type="button"
           onClick={() => window.location.href = `/test-detail/${item.uuid}`}
         >
-          {item.service_name} ({item.created_date})
+          {item.serviceName} ({item.createdDate})
         </button>
       ))}
+      <div>
+        page {pages?.page} of {pages?.total}
+      </div>
     </div>
   );
+  
 };
 
 export default TestListPage;
