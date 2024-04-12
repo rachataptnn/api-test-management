@@ -1,0 +1,59 @@
+/* Remove custom class declarations and replace with Tailwind utility classes where applicable */
+
+body {
+    /* Use Tailwind utility classes for text color and background gradient */
+    color: text-white; /* Assuming you have configured text colors in Tailwind */
+    background-image: linear-gradient(to bottom, transparent, bg-gradient-to-b); /* Replace with Tailwind gradient utilities */
+  }
+  
+  .container {
+    /* Use padding utility class */
+    padding: 5; /* Adjust as needed */
+  }
+  
+  .summary {
+    /* Use Tailwind border, padding, margin, and background utility classes */
+    @apply border border-gray-700 p-5 mb-5 bg-gray-800 rounded-lg;
+  }
+  
+  /* Repeat the same approach for other components */
+  
+  .routes-detail {
+    /* Use Tailwind button utility classes */
+    @apply cursor-pointer bg-green-500 text-white border-none py-2 px-4 rounded-lg my-2 w-full;
+  }
+  
+  /* Use Tailwind color and font-weight utility classes for status colors */
+  .passed {
+    @apply text-green-500 font-bold;
+  }
+  
+  .failed {
+    @apply text-red-500 font-bold;
+  }
+  
+  .failed-cell {
+    /* Use Tailwind background and text color utility classes */
+    @apply bg-red-500 text-red-900 font-bold;
+  }
+  
+  /* Use Tailwind flexbox utility classes for layout */
+  .row {
+    @apply flex items-center;
+  }
+  
+  .col {
+    @apply flex-1;
+  }
+  
+  /* Define custom styles for log section */
+  .log {
+    /* Use Tailwind border, padding, background, and rounded utility classes */
+    @apply border border-gray-700 p-5 bg-gray-800 rounded-lg mb-5;
+  }
+  
+  /* Apply Tailwind text color and font-family utility classes to terminal section */
+  .terminal {
+    @apply text-white font-mono bg-black p-3 rounded-lg mt-5 max-h-96 overflow-y-auto;
+  }
+  
